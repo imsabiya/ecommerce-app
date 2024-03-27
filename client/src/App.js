@@ -6,6 +6,8 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import ResetPwd from "./components/Auth/ResetPwd";
 import About from "./components/About";
+import Products from "./components/Products";
+import Cart from "./components/cart";
 
 
 function App() {
@@ -15,9 +17,11 @@ function App() {
         <Routes>
           <Route path="/" exact element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" exact element={<Register />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/resetPwd" element={<ResetPwd />} />
-          <Route path="/about" exact element={<About />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </div>
     </>
