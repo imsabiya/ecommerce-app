@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Navbar from "../../LandingPage/Navbar";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -51,13 +52,14 @@ const Register = () => {
   return (
     <>
       <ToastContainer autoClose={2000} />
-      <div className="flex container mx-auto justify-center place-items-center mt-12">
-        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border-t-4 border-indigo-500">
+      <Navbar/>
+      <div className="flex container mx-auto justify-center place-items-center mt-4">
+        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border-t-4 border-neutral text-center">
           <h2
-            className="text-2xl font-bold my-2 text-indigo-500 italic tracking-wider hover:cursor-pointer"
+            className="text-2xl font-bold my-2 text-slate-400 italic tracking-wider hover:cursor-pointer"
             onClick={() => navigate("/")}
           >
-            Jobster
+            Ecomm
           </h2>
           <h2 className="text-2xl font-bold my-2">Register</h2>
           <form className="card-body" onSubmit={handleSubmit(submitHandler)}>
@@ -68,7 +70,7 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="Name"
-                className="input input-bordered border-1 border-indigo-400"
+                className="input input-bordered border-1 border-neutral-400"
                 required
                 {...register("name", {
                   required: "Name is required",
@@ -91,7 +93,7 @@ const Register = () => {
               <input
                 type="email"
                 placeholder="Email"
-                className="input input-bordered border-1 border-indigo-400"
+                className="input input-bordered border-1 border-neutral-400"
                 required
                 {...register("email", {
                   required: "Email is required",
@@ -114,7 +116,7 @@ const Register = () => {
               <input
                 type="password"
                 placeholder="Password"
-                className="input input-bordered border-1 border-indigo-400"
+                className="input input-bordered border-1 border-neutral-400"
                 {...register("password", {
                   required: "Password is required",
                   minLength: {
@@ -136,7 +138,7 @@ const Register = () => {
               <input
                 type="password"
                 placeholder="Confirm Password"
-                className="input input-bordered border-1 border-indigo-400"
+                className="input input-bordered border-1 border-neutral-400"
                 required
                 {...register("confirmPassword", {
                   required: "Confirm Password is required",
@@ -155,14 +157,14 @@ const Register = () => {
               )}
             </div>
             <div className="form-control mt-6">
-              <button className="btn bg-indigo-500 text-white text-xl">
+              <button className="btn bg-neutral-900 text-white text-xl">
                 Register
               </button>
             </div>
             <div className="flex gap-1 justify-center place-items-center my-2">
               Already have an account?
               <span
-                className="text-indigo-500 font-semibold text-md hover:underline hover:cursor-pointer"
+                className="text-neutral-900 font-semibold text-md hover:underline hover:cursor-pointer"
                 onClick={() => navigate("/login")}
               >
                 Login

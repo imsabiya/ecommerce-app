@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Navbar from "../../LandingPage/Navbar";
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -41,15 +43,16 @@ const Login = () => {
   return (
     <>
       <ToastContainer autoClose={2000} />
+      <Navbar/>
       <div className="flex container mx-auto justify-center place-items-center mt-12">
-        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border-t-4 border-indigo-500">
+        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border-t-4 border-neutral text-center">
           <h2
-            className="text-2xl font-bold my-2 text-indigo-500 italic tracking-wider hover:cursor-pointer"
+            className="text-2xl font-bold my-2 text-slate-400 italic tracking-wider hover:cursor-pointer"
             onClick={() => navigate("/")}
           >
-            Jobster
+            Ecomm
           </h2>
-          <h2 className="text-2xl font-bold my-2">Login</h2>
+          <h2 className="text-2xl font-bold my-2 ">Login</h2>
           <form className="card-body" onSubmit={handleSubmit(submitHandler)}>
             <div className="form-control">
               <label className="label">
@@ -58,7 +61,7 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="Email"
-                className="input border-1 border-indigo-400"
+                className="input border-1 border-neutral-400"
                 //required
                 {...register("email", {
                   required: "Email is required",
@@ -81,7 +84,7 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="Password"
-                className="input border-1 border-indigo-400"
+                className="input border-1 border-neutral-400"
                 required
                 {...register("password", {
                   required: "Password is required",
@@ -98,7 +101,7 @@ const Login = () => {
               )}
               <label className="label">
                 <span
-                  className="text-indigo-500 font-semibold tracking-wide text-sm hover:underline hover:cursor-pointer"
+                  className="text-neutral-900 font-semibold tracking-wide text-sm hover:underline hover:cursor-pointer"
                   onClick={() => navigate("/resetPwd")}
                 >
                   Forgot password?
@@ -106,14 +109,14 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn bg-indigo-500 text-white text-xl">
+              <button className="btn bg-neutral-900 text-white text-xl">
                 Login
               </button>
             </div>
             <div className="flex gap-1 justify-center place-items-center my-1">
               Don't have an account?
               <span
-                className="text-indigo-500 font-semibold text-md hover:underline hover:cursor-pointer"
+                className="text-neutral-900 font-semibold text-md hover:underline hover:cursor-pointer"
                 onClick={() => navigate("/register")}
               >
                 Create Account

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Navbar from "../../LandingPage/Navbar";
 
 const ResetPwd = () => {
   const navigate = useNavigate();
@@ -49,13 +50,14 @@ const ResetPwd = () => {
   return (
     <>
       <ToastContainer autoClose={2000} />
+      <Navbar/>
       <div className="flex container mx-auto justify-center place-items-center mt-12">
-        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border-t-4 border-indigo-400">
+        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border-t-4 border-neutral text-center">
           <h2
-            className="text-2xl font-bold my-2 text-indigo-500 italic tracking-wider hover:cursor-pointer"
+            className="text-2xl font-bold my-2 text-slate-400 italic tracking-wider hover:cursor-pointer"
             onClick={() => navigate("/")}
           >
-            Jobster
+            Ecomm
           </h2>
           <h2 className="text-2xl font-bold my-2">Forgot Password</h2>
           <form className="card-body" onSubmit={handleSubmit(submitHandler)}>
@@ -66,7 +68,7 @@ const ResetPwd = () => {
               <input
                 type="email"
                 placeholder="Email"
-                className="input input-bordered border-1 border-indigo-400"
+                className="input input-bordered border-1 border-neutral-400"
                 required
                 {...register("email", {
                   required: "Email is required",
@@ -89,7 +91,7 @@ const ResetPwd = () => {
               <input
                 type="password"
                 placeholder="Password"
-                className="input input-bordered border-1 border-indigo-400"
+                className="input input-bordered border-1 border-neutral-400"
                 required
                 {...register("password", {
                   required: "Password is required",
@@ -112,7 +114,7 @@ const ResetPwd = () => {
               <input
                 type="password"
                 placeholder="Confirm Password"
-                className="input input-bordered border-1 border-indigo-400"
+                className="input input-bordered border-1 border-neutral-400"
                 required
                 {...register("confirmPassword", {
                   required: "confirm password is required",
@@ -131,7 +133,7 @@ const ResetPwd = () => {
               )}
             </div>
             <div className="form-control mt-6">
-              <button className="btn bg-indigo-500 text-white text-xl">
+              <button className="btn bg-neutral-900 text-white text-xl">
                 Reset Password
               </button>
             </div>

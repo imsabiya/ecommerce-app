@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNavbar = () => {
@@ -18,32 +21,40 @@ const Navbar = () => {
               </div>
               <div className="hidden lg:flex">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <a
-                    href="#features"
+                  <button
+                    onClick={() => {
+                      navigate("/about");
+                    }}
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium"
                   >
                     About
-                  </a>
-                  <a
-                    href="#pricing"
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/products");
+                    }}
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium"
                   >
                     Products
-                  </a>
+                  </button>
                 </div>
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <a
-                    href="#features"
+                  <button
+                    onClick={() => {
+                      navigate("/cart");
+                    }}
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium"
                   >
                     Cart
-                  </a>
-                  <a
-                    href="#pricing"
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/login");
+                    }}
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium"
                   >
                     Login
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -90,30 +101,38 @@ const Navbar = () => {
 
         <div className={`${isOpen ? "block" : "hidden"} lg:hidden`}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a
-              href="#features"
+            <button
+              onClick={() => {
+                navigate("/about");
+              }}
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               About
-            </a>
-            <a
-              href="#pricing"
+            </button>
+            <button
+              onClick={() => {
+                navigate("/products");
+              }}
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
-              Product
-            </a>
-            <a
-              href="#pricing"
+              Products
+            </button>
+            <button
+              onClick={() => {
+                navigate("/cart");
+              }}
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Cart
-            </a>
-            <a
-              href="#pricing"
+            </button>
+            <button
+              onClick={() => {
+                navigate("/login");
+              }}
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Login
-            </a>
+            </button>
           </div>
         </div>
       </nav>
