@@ -95,7 +95,7 @@ const LandingPage = () => {
         <button
           className="btn btn-primary max-w-xs w-max uppercase my-2 mx-2"
           onClick={() => {
-            navigate("/home");
+            navigate("/products");
           }}
         >
           All Products
