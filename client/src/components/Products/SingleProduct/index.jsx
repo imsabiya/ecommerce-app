@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../../LandingPage/Navbar";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -145,7 +147,7 @@ const SingleProduct = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      data:  {...cartRequestData },
+      data: { ...cartRequestData },
     };
 
     try {
@@ -157,12 +159,13 @@ const SingleProduct = () => {
       console.log(data, "orderByUserId data");
       setPreviousOrdersData(data);
     } catch (err) {
-      console.error(err);
+      toast.error(err.response.data.error);
     }
   };
 
   return (
     <>
+      <ToastContainer autoClose={2000} />
       <div className="flex flex-col gap-4 h-screen">
         <Navbar />
         <button

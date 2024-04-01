@@ -1,5 +1,5 @@
 const { addOrder, getOrderById } = require("../controllers/order-controller");
-
+//const authMiddleware = require("../middlewares/authMiddleware");
 const express = require("express");
 const router = express.Router();
 

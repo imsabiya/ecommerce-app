@@ -8,7 +8,6 @@ const LandingPage = () => {
   const navigate = useNavigate();
   const token = sessionStorage.getItem("token");
 
-
   const fetchProducts = async () => {
     // const paramsData = {
     //   userId: user._id,
@@ -58,9 +57,11 @@ const LandingPage = () => {
           </div>
           <div className=" mt-4 w-full h-full">
             <img
-              //src="https://react-course-comfy-sloth-store.netlify.app/static/media/hero-bcg.a876f19f6786a3aca992.jpeg"
-              //className="w-22 h-32 object-cover"
+              src="https://react-course-comfy-sloth-store.netlify.app/static/media/hero-bcg.a876f19f6786a3aca992.jpeg"
               alt="img"
+              //width={420}
+              className="w-4/6"
+              //height={360}
             />
           </div>
         </div>

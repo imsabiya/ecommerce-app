@@ -9,20 +9,91 @@ import About from "./components/About";
 import Products from "./components/Products";
 import Cart from "./components/Cart";
 import SingleProduct from "./components/Products/SingleProduct";
+import ProtectedRoutes from "./Routes/ProtectedRoutes";
 
 function App() {
+  const token = sessionStorage.getItem("token");
+
   return (
     <>
       <div className="mx-2 h-full bg-slate-200 my-0">
         <Routes>
-          <Route path="/" exact element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/resetPwd" element={<ResetPwd />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/product/:id" element={<SingleProduct />} />
-          <Route path="/cart" element={<Cart />} />
+          {token ? (
+            <Route
+              exact
+              path="/"
+              element={
+                <ProtectedRoutes exact path="/" element={<LandingPage />} />
+              }
+            />
+          ) : (
+            <Route exact path="/" element={<LandingPage />} />
+          )}
+          {token ? (
+            <Route
+              path="/login"
+              element={<ProtectedRoutes path="/login" element={<Login />} />}
+            />
+          ) : (
+            <Route path="/login" element={<Login />} />
+          )}
+          {token ? (
+            <Route
+              path="/register"
+              element={
+                <ProtectedRoutes path="/register" element={<Register />} />
+              }
+            />
+          ) : (
+            <Route path="/register" element={<Register />} />
+          )}
+          {token ? (
+            <Route
+              path="/resetPwd"
+              element={
+                <ProtectedRoutes path="/resetPwd" element={<ResetPwd />} />
+              }
+            />
+          ) : (
+            <Route path="/resetPwd" element={<ResetPwd />} />
+          )}
+          {token ? (
+            <Route
+              path="/about"
+              element={<ProtectedRoutes path="/about" element={<About />} />}
+            />
+          ) : (
+            <Route path="/about" element={<About />} />
+          )}
+          {token ? (
+            <Route
+              path="/products"
+              element={
+                <ProtectedRoutes path="/products" element={<Products />} />
+              }
+            />
+          ) : (
+            <Route path="/products" element={<Products />} />
+          )}
+          {token ? (
+            <Route
+              path="/product/:id"
+              element={
+                <ProtectedRoutes
+                  path="/product/:id"
+                  element={<SingleProduct />}
+                />
+              }
+            />
+          ) : (
+            <Route path="/product/:id" element={<SingleProduct />} />
+          )}
+          (
+          <Route
+            path="/cart"
+            element={<ProtectedRoutes path="/cart" element={<Cart />} />}
+          />
+          )
         </Routes>
       </div>
     </>

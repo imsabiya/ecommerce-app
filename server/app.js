@@ -41,11 +41,11 @@ populateDB();
 
 const userRoutes = require("./routes/user-routes");
 const productRoutes = require("./routes/product-routes");
-const orderRoutes = require('./routes/order-routes');
+const orderRoutes = require("./routes/order-routes");
 const authMiddleware = require("./middlewares/authMiddleware");
 
 app.use(userRoutes);
-app.use(authMiddleware, productRoutes);
+app.use(productRoutes);
 app.use(authMiddleware, orderRoutes);
 
 // Listen to server

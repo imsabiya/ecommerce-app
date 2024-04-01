@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const token = sessionStorage.getItem("token");
+
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +18,10 @@ const Navbar = () => {
         <div className="mx-auto">
           <div className="flex items-center justify-between h-20">
             <div className="flex justify-between items-center w-full mx-6 lg:mx-12">
-              <div className="flex-shrink-0 text-white p-2 text-4xl lg:text-5xl pl-0 lg:pl-2 font-bold italic">
+              <div
+                className="flex-shrink-0 text-white p-2 text-4xl lg:text-5xl pl-0 lg:pl-2 font-bold italic"
+                onClick={() => navigate("/")}
+              >
                 Ecomm
               </div>
               <div className="hidden lg:flex">
@@ -47,14 +52,27 @@ const Navbar = () => {
                   >
                     Cart
                   </button>
-                  <button
-                    onClick={() => {
-                      navigate("/login");
-                    }}
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium"
-                  >
-                    Login
-                  </button>
+                  {token ? (
+                    <button
+                      onClick={() => {
+                        sessionStorage.clear();
+                        window.location.reload();
+                        navigate("/");
+                      }}
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium"
+                    >
+                      LogOut
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        navigate("/login");
+                      }}
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium"
+                    >
+                      Login
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
