@@ -27,7 +27,12 @@ const addOrder = async (req, res) => {
           id,
           {
             products: [...findOrderByUserId[0].products, ...products],
-            bill,
+            bill: [...findOrderByUserId[0].products, ...products].reduce(
+              (ac, product) => {
+                ac = ac + product.price;
+              },
+              0
+            ),
             name,
             address,
             city,
@@ -45,7 +50,12 @@ const addOrder = async (req, res) => {
         const newOrder = new Order({
           userId: userId,
           products,
-          bill,
+          bill: [...findOrderByUserId[0].products, ...products].reduce(
+            (ac, product) => {
+              ac = ac + product.price;
+            },
+            0
+          ),
           name,
           address,
           city,
@@ -81,4 +91,19 @@ const getOrderById = async (req, res) => {
   }
 };
 
-module.exports = { addOrder, getOrderById };
+const deleteCompleteOrder = async (req, res) => {
+  const { id } = req.query;
+  try {
+    const order = await Order.findByIdAndDelete(id);
+    if (!order) {
+      return res.status(401).json({ message: `Order doesn't exist` });
+    }
+    return res
+      .status(200)
+      .json({ message: "Order deleted successfully", data: order });
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
+
+module.exports = { addOrder, getOrderById, deleteCompleteOrder };

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../LandingPage/Navbar";
 import axios from "axios";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const token = sessionStorage.getItem("token");
   const userObj = JSON.parse(sessionStorage.getItem("user"));
 
@@ -33,6 +35,35 @@ const Cart = () => {
     fetchOrdersDetails();
   }, []);
 
+  const deleteCartHandler = async () => {
+    const getOrder = ordersData?.orders?.find(
+      (order) => order.userId === userObj._id
+    );
+
+    const paramsData = {
+      id: getOrder._id,
+    };
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      params: { ...paramsData },
+    };
+    try {
+      const res = await axios.delete(
+        `${process.env.REACT_APP_ECOMMERCE_APP_URL}/order`,
+        config
+      );
+      const data = res.data;
+      console.log(data);
+      fetchOrdersDetails();
+    } catch (error) {
+      //toast.error(error);
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col gap-4 h-screen">
@@ -49,7 +80,7 @@ const Cart = () => {
                 </tr>
               </thead>
               <tbody>
-                {ordersData.orders?.length > 0 &&
+                {ordersData.orders?.length > 0 ? (
                   ordersData?.orders
                     ?.find((order) => order.userId === userObj._id)
                     ?.products?.map((product) => {
@@ -99,14 +130,25 @@ const Cart = () => {
                           </tr>
                         </>
                       );
-                    })}
+                    })
+                ) : (
+                  <div className="text-lg tracking-wider font-bold mt-4 p-2 flex justify-center p-2">
+                    No products in your cart.
+                  </div>
+                )}
               </tbody>
             </table>
             <div className="mx-6 mt-8 flex flex-wrap justify-between place-items-center">
-              <button className="btn btn-neutral capitalize">
+              <button
+                className="btn btn-neutral capitalize"
+                onClick={() => navigate("/products")}
+              >
                 Continue Shopping
               </button>
-              <button className="btn bg-red-400 capitalize">
+              <button
+                className="btn bg-red-400 capitalize"
+                onClick={deleteCartHandler}
+              >
                 Clear Shopping Cart
               </button>
             </div>

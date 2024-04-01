@@ -76,7 +76,7 @@ const SingleProduct = () => {
     }
   };
 
-  //console.log(previousOrdersData, "prev");
+  console.log(previousOrdersData, "prev");
 
   const cartHandler = async () => {
     // const cartRequestData =
