@@ -6,14 +6,9 @@ import Navbar from "../LandingPage/Navbar";
 const Products = () => {
   const [productsData, setProductsData] = useState([]);
   const navigate = useNavigate();
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZmQ1Njc0OGJhNDM4Y2U5MDY2YjkxZCIsInVzZXJFbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzExNTIyMjE2LCJleHAiOjE3MTE2MDg2MTZ9.QwQxgCGl8sTRR3tiPVuW5yxDt1r7lPvD5GDERPkjR88";
-
+  const token = sessionStorage.getItem("token");
+  
   const fetchProducts = async () => {
-    // const paramsData = {
-    //   userId: user._id,
-    // };
-
     const config = {
       headers: {
         "Content-Type": "application/json",

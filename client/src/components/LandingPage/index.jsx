@@ -6,8 +6,8 @@ import axios from "axios";
 const LandingPage = () => {
   const [sampleProducts, setSampleProducts] = useState([]);
   const navigate = useNavigate();
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZmQ1Njc0OGJhNDM4Y2U5MDY2YjkxZCIsInVzZXJFbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzExNDM0NDI2LCJleHAiOjE3MTE1MjA4MjZ9.4QagHI8sjpzt5G0NcDr2RXHWew-ms3ELQWm9EoJMEts";
+  const token = sessionStorage.getItem("token");
+
 
   const fetchProducts = async () => {
     // const paramsData = {
@@ -27,7 +27,6 @@ const LandingPage = () => {
         config
       );
       const data = res.data;
-      console.log(data);
       setSampleProducts(data);
     } catch (err) {
       console.error(err);
