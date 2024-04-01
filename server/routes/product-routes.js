@@ -4,6 +4,7 @@ const {
   addProduct,
   editProduct,
   deleteProduct,
+  getAllProductsByFilters,
 } = require("../controllers/product-controller");
 
 //const authMiddleware = require("../middlewares/authMiddleware");
@@ -13,6 +14,7 @@ const router = express.Router();
 
 router.route("/addProduct").post(addProduct);
 router.route("/getAllProducts").get(getAllProducts);
+router.route("/getAllProductsByFilters").get(getAllProductsByFilters);
 router
   .route("/product?:id")
   .get(getProductById)

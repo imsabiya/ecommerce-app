@@ -76,7 +76,7 @@ const SingleProduct = () => {
     }
   };
 
-  console.log(previousOrdersData, "prev");
+  //console.log(previousOrdersData, "prev");
 
   const cartHandler = async () => {
     // const cartRequestData =
@@ -156,7 +156,7 @@ const SingleProduct = () => {
         config
       );
       const data = res.data;
-      console.log(data, "orderByUserId data");
+      //console.log(data, "orderByUserId data");
       setPreviousOrdersData(data);
     } catch (err) {
       toast.error(err.response.data.error);

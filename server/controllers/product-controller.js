@@ -12,6 +12,43 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+const getAllProductsByFilters = async (req, res) => {
+  const { search, category, company, price, freeShipping } = req.query;
+  console.log(search, category, company, price, freeShipping);
+  const title = search;
+
+  const filteredProduct = {};
+
+  if (title) {
+    filteredProduct.title = { $regex: title, $options: "i" };
+  }
+  if (category && category !== "All") {
+    filteredProduct.category = category;
+  }
+
+  if (company && company !== "All") {
+    filteredProduct.company = company;
+  }
+  console.log(filteredProduct.company,"mm")
+  // if (price) {
+  //   filteredProduct.price = { $gte: price, $lte: 0 };
+  // }
+  if (freeShipping === "true") {
+    filteredProduct.freeShipping = "free";
+  }
+
+  try {
+    const filteredProducts = await Product.find(filteredProduct);
+    console.log(filteredProducts);
+    res.status(200).json({
+      products: filteredProducts,
+      totalProducts: filteredProducts.length,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
+
 const getProductById = async (req, res) => {
   const { id } = req.query;
   try {
@@ -91,6 +128,7 @@ const deleteProduct = async (req, res) => {
 
 module.exports = {
   getAllProducts,
+  getAllProductsByFilters,
   getProductById,
   addProduct,
   editProduct,
