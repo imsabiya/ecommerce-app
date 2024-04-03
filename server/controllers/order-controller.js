@@ -27,12 +27,7 @@ const addOrder = async (req, res) => {
           id,
           {
             products: [...findOrderByUserId[0].products, ...products],
-            bill: [...findOrderByUserId[0].products, ...products].reduce(
-              (ac, product) => {
-                ac = ac + product.price;
-              },
-              0
-            ),
+            bill: bill,
             name,
             address,
             city,
@@ -50,12 +45,7 @@ const addOrder = async (req, res) => {
         const newOrder = new Order({
           userId: userId,
           products,
-          bill: [...findOrderByUserId[0].products, ...products].reduce(
-            (ac, product) => {
-              ac = ac + product.price;
-            },
-            0
-          ),
+          bill: bill,
           name,
           address,
           city,
@@ -106,4 +96,20 @@ const deleteCompleteOrder = async (req, res) => {
   }
 };
 
-module.exports = { addOrder, getOrderById, deleteCompleteOrder };
+const deleteProductFromOrder = async (req, res) => {
+  const { id } = req.query;
+  const userId = req?.user?.id;
+  if (userId) {
+    const ordersList = await Order.find({ userId: userId });
+    console.log(ordersList, "ordersList");
+  } else {
+    res.status(400).json({ error: "Login Required!" });
+  }
+};
+
+module.exports = {
+  addOrder,
+  getOrderById,
+  deleteCompleteOrder,
+  deleteProductFromOrder,
+};

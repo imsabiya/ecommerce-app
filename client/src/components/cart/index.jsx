@@ -36,9 +36,9 @@ const Cart = () => {
   }, []);
 
   const deleteCartHandler = async () => {
-    const getOrder = ordersData?.orders?.find(
-      (order) => order.userId === userObj._id
-    );
+    const getOrder =
+      ordersData?.orders?.length > 0 &&
+      ordersData?.orders?.find((order) => order.userId === userObj._id);
 
     const paramsData = {
       id: getOrder._id,
